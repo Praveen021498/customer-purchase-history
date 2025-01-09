@@ -1,7 +1,8 @@
 # Databricks notebook source
 # DBTITLE 1,Mount  S3
 # AWS Credentials
-
+ACCESS_KEY = dbutils.secrets.get(scope="my-secrets",key="aws-access-key")
+SECRET_KEY = dbutils.secrets.get(scope="my-secrets",key="aws-secret-key")
 
 ENCODED_SECRET_KEY = SECRET_KEY.replace("/", "%2F")
 
@@ -122,3 +123,12 @@ df_cumulative.write \
     .partitionBy("customer_id") \
     .mode("overwrite") \
     .save("/mnt/s3customer-purchase-history/customers/customer_purchases_transformed")
+
+# COMMAND ----------
+
+# Retrieve a secret from the scope
+aws_access_key = dbutils.secrets.get("my-secrets", "aws-access-key")
+print(aws_access_key)
+
+aws_secret_key = dbutils.secrets.get("my-secrets", "aws-secret-key")
+print(aws_secret_key)
