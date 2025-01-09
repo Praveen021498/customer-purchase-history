@@ -2,6 +2,7 @@
 # DBTITLE 1,Mount  S3
 # AWS Credentials
 
+
 ENCODED_SECRET_KEY = SECRET_KEY.replace("/", "%2F")
 
 # S3 Bucket Information
@@ -58,6 +59,7 @@ duplicate_rows = df_original.groupBy(df_original.columns).count().filter(col("co
 # Show the duplicate rows
 duplicate_rows.show()
 
+#drop duplicates
 df_original.dropDuplicates().show()
 
 # COMMAND ----------
@@ -119,4 +121,4 @@ df_cumulative.write \
     .format("delta") \
     .partitionBy("customer_id") \
     .mode("overwrite") \
-    .save("s3a://customer-purchase-history/customers/customer_purchases_transformed")
+    .save("/mnt/s3customer-purchase-history/customers/customer_purchases_transformed")
