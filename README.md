@@ -21,3 +21,6 @@ Data Enrichment:
 Data Storage: 
   Write the transformed data into a Delta Lake table, partitioned by
   customer_id for better query performance.
+
+
+![image](https://github.com/user-attachments/assets/ce2f84ae-0714-4465-8f26-f45ac25217b0)
